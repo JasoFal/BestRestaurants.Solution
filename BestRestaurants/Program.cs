@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using ProjectName.Models;
+using BestRestaurants.Models;
 
-namespace ProjectName
+namespace BestRestaurants
 {
   class Program
   {
@@ -11,7 +11,7 @@ namespace ProjectName
     {
       WebApplicationBuilder builder = WebApplication.CreateBuilder(arg);
       builder.Services.AddControllersWithViews();
-      builder.Services.AddDbContext<ProjectNameContext>(
+      builder.Services.AddDbContext<BestRestaurantsContext>(
         dbContextOptions => dbContextOptions
           .UseMySql(
             builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"]
