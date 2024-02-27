@@ -55,5 +55,20 @@ namespace BestRestaurants.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult Delete(int id)
+    {
+      Cuisine thisCuisine = _db.Cuisines.FirstOrDefault(c => c.CuisineId == id);
+      return View(thisCuisine);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Cuisine thisCuisine = _db.Cuisines.FirstOrDefault(c => c.CuisineId == id);
+      _db.Cuisines.Remove(thisCuisine);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
