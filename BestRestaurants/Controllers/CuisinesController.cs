@@ -8,7 +8,7 @@ namespace BestRestaurants.Controllers
 {
   public class CuisineController : Controller
   {
-    private readonly ClassNameContext _db;
+    private readonly BestRestaurantsContext _db;
 
     public CuisineController(BestRestaurantsContext db)
     {
@@ -19,6 +19,19 @@ namespace BestRestaurants.Controllers
     {
       List<Restaurant> model = _db.Restaurants.ToList();
       return View(model);
+    }
+
+    public ActionResult Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Cuisine cuisine)
+    {
+      _db.Cuisines.Add(cuisine);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
