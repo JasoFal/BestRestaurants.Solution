@@ -44,5 +44,12 @@ namespace BestRestaurants.Controllers
         .FirstOrDefault(r => r.RestaurantId == id);
       return View(thisRestaurant);
     }
+
+    public ActionResult Edit(Restaurant restaurant)
+    {
+      _db.Restaurants.Update(restaurant);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
