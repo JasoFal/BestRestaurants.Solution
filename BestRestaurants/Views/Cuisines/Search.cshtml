@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+<h2>Search for all restaurants in cuisine.</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.TextBox("searchString")
+
+  <input type="submit" value="Search" class="btn btn-default">
+}
+
+
