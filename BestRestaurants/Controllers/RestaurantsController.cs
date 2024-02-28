@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BestRestaurants.Models;
@@ -17,15 +19,19 @@ namespace BestRestaurants.Controllers
 
     public ActionResult Index()
     {
-      List<Restaurant> model = _db.Restaurants.ToList();
+      List<Restaurant> model = _db.Restaurants
+        .Include(r => r.Cuisine)
+        .ToList();
       return View(model);
     }
 
     public ActionResult Create()
     {
+      ViewBag.CuisineId = new SelectList(_db.Cuisines, "CuisineId", "Type");
       return View();
     }
 
+    [HttpPost]
     public ActionResult Create(Restaurant restaurant)
     {
       if (restaurant.CuisineId == 0)
