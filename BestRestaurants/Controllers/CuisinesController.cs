@@ -70,5 +70,22 @@ namespace BestRestaurants.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult Search() 
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Search(string searchString) 
+    {
+      Cuisine thisCuisine = _db.Cuisines
+        .FirstOrDefault(c => c.Type.Contains(searchString));
+      if (thisCuisine != null)
+      {
+        return RedirectToAction("Details", new { id = thisCuisine.CuisineId});
+      }
+      return RedirectToAction("Search");
+    }
   }
 }
