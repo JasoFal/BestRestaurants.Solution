@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BestRestaurants.Models;
